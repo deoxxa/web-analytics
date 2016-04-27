@@ -116,7 +116,7 @@ func main() {
 			remote: r.RemoteAddr,
 			url:    pageURL,
 			action: v.Action,
-			vars:   v.Vars,
+			vars:   addBasics(v.Vars, r),
 		})
 	})
 
@@ -139,6 +139,7 @@ func main() {
 			remote: r.RemoteAddr,
 			url:    pageURL,
 			action: "ws-connect",
+			vars:   addBasics(nil, r),
 		})
 
 		defer func() {
@@ -148,6 +149,7 @@ func main() {
 				remote: r.RemoteAddr,
 				url:    pageURL,
 				action: "ws-disconnect",
+				vars:   addBasics(nil, r),
 			})
 		}()
 
@@ -167,7 +169,7 @@ func main() {
 				remote: r.RemoteAddr,
 				url:    pageURL,
 				action: v.Action,
-				vars:   v.Vars,
+				vars:   addBasics(v.Vars, r),
 			})
 		}
 	})
@@ -196,6 +198,16 @@ func main() {
 	if err := http.ListenAndServe(*addr, n); err != nil {
 		panic(err)
 	}
+}
+
+func addBasics(m map[string]interface{}, r *http.Request) map[string]interface{} {
+	if m == nil {
+		m = make(map[string]interface{})
+	}
+
+	m["user_agent"] = r.Header.Get("user-agent")
+
+	return m
 }
 
 func addUserID(rw http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
