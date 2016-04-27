@@ -38,8 +38,6 @@ type tracker struct {
 var insertEvent = `insert into "events" ("userid", "time", "remote", "url", "action", "vars") values ($1, $2, $3, $4, $5, $6)`
 
 func (t *tracker) track(e event) error {
-	fmt.Printf("tracking event %#v\n", e)
-
 	d, err := json.Marshal(e.vars)
 	if err != nil {
 		return err
