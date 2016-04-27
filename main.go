@@ -190,6 +190,8 @@ func main() {
 	n.UseFunc(addUserID)
 	n.UseHandler(m)
 
+	fmt.Printf("# listening on %s\n", *addr)
+
 	if err := http.ListenAndServe(*addr, n); err != nil {
 		panic(err)
 	}
