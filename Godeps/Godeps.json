@@ -67,6 +67,10 @@
 			"Rev": "b8551f24ff84b857fd7ba43a2db4c0b97451249d"
 		},
 		{
+			"ImportPath": "github.com/sebest/xff",
+			"Rev": "325cb7697e6d464fe539cbbdf1e4143e6f6e4f21"
+		},
+		{
 			"ImportPath": "golang.org/x/sys/unix",
 			"Rev": "d3c664b24d45e6900bebbcb0c11b1c418a0fd923"
 		},

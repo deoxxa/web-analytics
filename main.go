@@ -17,6 +17,7 @@ import (
 	"github.com/gorilla/websocket"
 	"github.com/jackc/pgx"
 	"github.com/meatballhat/negroni-logrus"
+	"github.com/sebest/xff"
 	"gopkg.in/alecthomas/kingpin.v2"
 )
 
@@ -185,6 +186,7 @@ func main() {
 
 	n := negroni.New()
 
+	n.UseFunc(xff.XFF)
 	n.Use(negronilogrus.NewMiddleware())
 	n.Use(negroni.NewRecovery())
 	n.UseFunc(addUserID)
