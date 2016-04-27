@@ -28,7 +28,7 @@ var (
 )
 
 var schema = []string{
-	`create table if not exists "events" ("userid" character varying, "time" timestamp, "remote" text, "url" text, "action" text, "vars" jsonb)`,
+	`create table if not exists "events" ("userid" character varying, "time" timestamp, "remote" text, "url" text, "action" text, "vars" json)`,
 }
 
 type tracker struct {
